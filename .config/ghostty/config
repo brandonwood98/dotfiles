@@ -1,7 +1,9 @@
-font-family = SF Mono
 font-size = 20
+font-family = Iosevka Term 
 theme = aura
 background = 000000
+background-opacity = 0.9
+background-blur-radius = 10
 
 macos-titlebar-style = hidden
 confirm-close-surface = false

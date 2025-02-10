@@ -14,6 +14,13 @@ return {
     config = function()
       require "configs.lspconfig"
     end,
+    opts = function()
+      return {
+        inlay_hints = {
+          enabled = true,
+        },
+      }
+    end,
   },
 
   {

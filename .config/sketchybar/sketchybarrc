@@ -19,11 +19,11 @@ sketchybar --default "${default[@]}"
 ##### Adding Left Items #####
 # We add some regular items to the left side of the bar, where
 # only the properties deviating from the current defaults need to be set
-sketchybar --add item front_app left \
-           --set front_app       background.drawing=off \
-                                 icon.font="sketchybar-app-font:Regular:16.0" \
-                                 script="$PLUGIN_DIR/front_app.sh"            \
-           --subscribe front_app front_app_switched
+# sketchybar --add item front_app left \
+#           --set front_app       background.drawing=off \
+#                                 icon.font="sketchybar-app-font:Regular:16.0" \
+#                                 script="$PLUGIN_DIR/front_app.sh"            \
+#           --subscribe front_app front_app_switched
 
 sketchybar --add event aerospace_workspace_change
 

@@ -12,15 +12,26 @@ local servers = {
   "svelte",
   "emmet_ls",
   "eslint",
-  "zls"
+  "zls",
+  "yamlls",
+  "jsonls"
 }
 
 local nvlsp = require "nvchad.configs.lspconfig"
 
+local on_attach = function(client, buffer)
+  nvlsp.on_attach()
+  if client.supports_method "textDocument/inlayHint" then
+    if vim.api.nvim_buf_is_valid(buffer) and vim.bo[buffer].buftype == "" then
+      vim.lsp.inlay_hint.enable(true, { bufnr = buffer })
+    end
+  end
+end
+
 -- lsps with default config
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
-    on_attach = nvlsp.on_attach,
+    on_attach = on_attach,
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
   }
@@ -31,6 +42,9 @@ local vue_language_server_path = mason_registry.get_package("vue-language-server
   .. "/node_modules/@vue/language-server"
 
 lspconfig.ts_ls.setup {
+  on_attach = on_attach,
+  on_init = nvlsp.on_init,
+  capabilities = nvlsp.capabilities,
   init_options = {
     plugins = {
       {
